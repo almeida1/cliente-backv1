@@ -14,7 +14,7 @@ public class UserProducer {
 	public UserProducer (RabbitTemplate rabbitTemplate) {
 		this.rabbitTemplate = rabbitTemplate;
 	}
-	@Value(value = "${broker.queue.email.name}")
+	@Value("${broker.queue.email.name}")
 	private String routingKey;
 	
 	public void publishMessageEmail(Usuario usuario) {
