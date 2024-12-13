@@ -1,15 +1,17 @@
 package com.fatec.sigvsmsuser.model;
 
 public class EmailDto {
-	private Long id;
+	private Long usuarioId;
 	private String emailTo;
 	private String subject;
 	private String text;
-	public Long getId() {
-		return id;
+	
+	
+	public Long getUsuarioId() {
+		return usuarioId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setUsuarioId(Long usuarioId) {
+		this.usuarioId = usuarioId;
 	}
 	public String getEmailTo() {
 		return emailTo;

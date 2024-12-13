@@ -9,15 +9,16 @@ import jakarta.persistence.Id;
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id; //para evitar conflitos pode-se usar uuid
+	private Long usuarioId; //para evitar conflitos pode-se usar uuid
 	private String nome;
 	private String email;
 	
-	public Long getId() {
-		return id;
+	
+	public Long getUsuarioId() {
+		return usuarioId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setUsuarioId(Long usuarioId) {
+		this.usuarioId = usuarioId;
 	}
 	public String getNome() {
 		return nome;
