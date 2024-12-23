@@ -28,15 +28,15 @@ public class ClienteController {
 		this.clienteService = usuarioService;
 	}
 	@PostMapping
-	public ResponseEntity<Cliente> saveCliente(@RequestBody @Valid ClienteRecordDTO cliente){
+	public ResponseEntity<Object> saveCliente(@RequestBody @Valid ClienteRecordDTO cliente){
 		Cliente novoCliente = new Cliente();
 		novoCliente.setCpf(cliente.cpf());
 		novoCliente.setNome(cliente.nome());
 		novoCliente.setCep(cliente.cep());
 		novoCliente.setEmail(cliente.email());
-		Optional<Cliente> c = clienteService.save(novoCliente);
+		Optional<Cliente> c = clienteService.cadastrar(novoCliente);
 		if (c.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados invalidos");
 		} else {
 			return ResponseEntity.status(HttpStatus.CREATED).body(c.get());
 		}
