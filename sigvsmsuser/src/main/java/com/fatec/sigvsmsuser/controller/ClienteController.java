@@ -19,12 +19,12 @@ import jakarta.validation.Valid;
 @CrossOrigin("*") // desabilita o cors do spring security
 @RestController
 @RequestMapping("/api/v1/clientes")
-public class UsuarioController {
+public class ClienteController {
 	
 	final ClienteService clienteService;
 	
 	
-	public UsuarioController (ClienteService usuarioService) {
+	public ClienteController (ClienteService usuarioService) {
 		this.clienteService = usuarioService;
 	}
 	@PostMapping
