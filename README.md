@@ -26,6 +26,7 @@ O resultado esperado é: (i) cadastro do cliente realizado no sistema de persist
     
 3) Configurar o arquivo - application.properties
 
-spring.mail.username=${SPRING_MAIL_USERNAME}
-spring.mail.password=${SPRING_MAIL_PASSWORD}
-
+- spring.mail.username=${SPRING_MAIL_USERNAME}
+- spring.mail.password=${SPRING_MAIL_PASSWORD}
+- spring.rabbitmq.addresses=${SPRING_RABBITMQ_ADDRESS}   (servico 1 user)
+- broker.queue.email.name=default.email (servico 1 e 2)
