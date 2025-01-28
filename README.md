@@ -7,7 +7,7 @@ Time de desenvolvimento
 > O micros servico 1 (MS1) foi desenvolvido no Sprng Boot, recebe as informações de cliente do front-end, cadastra o cliente na camada de persistencia, em seguida o ms1 se conecta ao broker de mensagens (RabbitMQ) e envia os dados do cliente para fila.  
 O resultado esperado é: (i) cadastro do cliente realizado no sistema de persistência, (ii) mensagem enviada na fila do sistema de mensagens.
 
-
+#### Requisitos de configuração do ambiente
 1) Configurar variáveis de ambiente no Windows 11:
 1.	Selecionar Iniciar
 2.	Selecionar Configurações
@@ -21,10 +21,11 @@ O resultado esperado é: (i) cadastro do cliente realizado no sistema de persist
    2. Create new instance - plano free Little Lemur
    3. Nome
    4. Regiao - aceita o default
+   5. Obter a URL de conexão - Overview - AMPQ Details
+   6. Consultar o RabbitMQ Manager - visualizar a dinamica de publicação e envio das msg
     
-4) 
-2) Configurar o arquivo - application.properties
-spring.mail.username=${SPRING_MAIL_USERNAME}
+3) Configurar o arquivo - application.properties
 
+spring.mail.username=${SPRING_MAIL_USERNAME}
 spring.mail.password=${SPRING_MAIL_PASSWORD}
 
