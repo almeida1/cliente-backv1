@@ -16,7 +16,7 @@ O resultado esperado é: (i) cadastro do cliente realizado no sistema de persist
 5.	Descer até Configurações relacionadas e selecionar Configurações avançadas do sistema
 6.	Selecionar Variáveis de Ambiente
 7.	Fazer as alterações desejadas
-2) Configurar o Message Broker on CloudAMQP - https://www.cloudamqp.com/
+2) Configurar o Message Broker on CloudAMQP neste exemplo será utilizada a default exchange- https://www.cloudamqp.com/
    1. Cadastro
    2. Create new instance - plano free Little Lemur
    3. Nome
