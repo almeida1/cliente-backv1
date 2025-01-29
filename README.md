@@ -17,9 +17,9 @@ Time de desenvolvimento
 7.	Selecionar variaveis do sistema
 8.	Selecionar novo
 9.	Realizar as alteracões desejadas
-   - Nome da variavel: SPRING_RABBITMQ_ADDRESS   Valor da variavel: URL de conexão
    - Nome da variavel: SPRING_MAIL_USERNAME      Valor da variavel: e-mail
-   - Nome da variavel: SPRING_MAIL_PASSWORD      Valor da variavel: senha de aplicativo 
+   - Nome da variavel: SPRING_MAIL_PASSWORD      Valor da variavel: senha de aplicativo
+   - Nome da variavel: SPRING_RABBITMQ_ADDRESS   Valor da variavel: URL de conexão
 > _As senhas de aplicativos são senhas de 16 dígitos que permitem que dispositivos ou aplicativos menos seguros acessem a Conta do Google._
 _Essas senhas só podem ser usadas com contas que tenham a verificação em duas etapas habilitada._
 _Selecione a opção crie senha de aplicativos - (https://support.google.com/accounts/answer/185833)_
@@ -33,7 +33,7 @@ _Selecione a opção crie senha de aplicativos - (https://support.google.com/acc
     
 3) Configurar o arquivo - application.properties
 
-- spring.mail.username=${SPRING_MAIL_USERNAME}
-- spring.mail.password=${SPRING_MAIL_PASSWORD}
-- spring.rabbitmq.addresses=${SPRING_RABBITMQ_ADDRESS}   (servico 1 user)
+- spring.mail.username=${SPRING_MAIL_USERNAME} (serviço 2)
+- spring.mail.password=${SPRING_MAIL_PASSWORD} (serviço 2)
+- spring.rabbitmq.addresses=${SPRING_RABBITMQ_ADDRESS}   (servico 1 e 2)
 - broker.queue.email.name=default.email (servico 1 e 2)
