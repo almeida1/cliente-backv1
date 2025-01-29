@@ -20,20 +20,8 @@ Time de desenvolvimento
    - Nome da variavel: SPRING_MAIL_USERNAME      Valor da variavel: e-mail
    - Nome da variavel: SPRING_MAIL_PASSWORD      Valor da variavel: senha de aplicativo
    - Nome da variavel: SPRING_RABBITMQ_ADDRESS   Valor da variavel: URL de conexão
-> _As senhas de aplicativos são senhas de 16 dígitos que permitem que dispositivos ou aplicativos menos seguros acessem a Conta do Google._
-_Essas senhas só podem ser usadas com contas que tenham a verificação em duas etapas habilitada._
-_Selecione a opção crie senha de aplicativos - (https://support.google.com/accounts/answer/185833)_
-2) Configurar o Message Broker on CloudAMQP neste exemplo será utilizada a default exchange- https://www.cloudamqp.com/
-   1. Cadastro
-   2. Create new instance - plano free Little Lemur
-   3. Nome
-   4. Regiao - aceita o default
-   5. Obter a URL de conexão > Overview > AMPQ Details
-   6. Consultar o RabbitMQ Manager - visualizar a dinamica de publicação e envio das msg
-    
-3) Configurar o arquivo - application.properties
 
-- spring.mail.username=${SPRING_MAIL_USERNAME} (serviço 2)
-- spring.mail.password=${SPRING_MAIL_PASSWORD} (serviço 2)
-- spring.rabbitmq.addresses=${SPRING_RABBITMQ_ADDRESS}   (servico 1 e 2)
-- broker.queue.email.name=default.email (servico 1 e 2)
+2) Configurar o Message Broker on CloudAMQP - https://www.cloudamqp.com/
+    
+
+
