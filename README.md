@@ -14,8 +14,11 @@ O resultado esperado é: (i) cadastro do cliente realizado no sistema de persist
 3.	Selecionar Sistema
 4.	Selecionar Sobre
 5.	Descer até Configurações relacionadas e selecionar Configurações avançadas do sistema
-6.	Selecionar Variáveis de Ambiente
-7.	Fazer as alterações desejadas
+6.	Criar/Selecionar a variavel de ambiente
+   Nome da variavel: SPRING_RABBITMQ_ADDRESS Valor da variavel: <URL>
+   Nome da variavel: SPRING_MAIL_USERNAME Valor da variavel: <e-mail>
+   Nome da variavel: SPRING_MAIL_PASSWORD Valor da variavel: <senha de app>
+
 2) Configurar o Message Broker on CloudAMQP neste exemplo será utilizada a default exchange- https://www.cloudamqp.com/
    1. Cadastro
    2. Create new instance - plano free Little Lemur
