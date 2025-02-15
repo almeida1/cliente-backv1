@@ -1,4 +1,4 @@
-### Fatec-Centro Paula Souza
+### Fatec
 #### Estudo de Caso – _SIGVS_ - Sistema Integrado de Gestão de Vendas e Suprimentos 
 Time de desenvolvimento
 - Joaquim da Silva Xavier
