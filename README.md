@@ -8,15 +8,6 @@ Time de desenvolvimento
 
 #### Requisitos de configuração do ambiente
 1) Configurar variáveis de ambiente no Windows 11:
-1.	Selecionar Iniciar
-2.	Selecionar Configurações
-3.	Selecionar Sistema
-4.	Selecionar Sobre
-5.	Selecionar Configurações avançadas do sistema
-6.	Selecionar variaveis de ambiente
-7.	Selecionar variaveis do sistema
-8.	Selecionar novo
-9.	Realizar as alteracões desejadas
    - Nome da variavel: SPRING_MAIL_USERNAME      Valor da variavel: e-mail
    - Nome da variavel: SPRING_MAIL_PASSWORD      Valor da variavel: senha de aplicativo
    - Nome da variavel: SPRING_RABBITMQ_ADDRESS   Valor da variavel: URL de conexão
