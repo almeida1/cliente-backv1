@@ -3,6 +3,8 @@ package com.fatec.sigvsmsuser.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fatec.sigvsmsuser.model.Cliente;
 import com.fatec.sigvsmsuser.model.ClienteRecordDTO;
 import com.fatec.sigvsmsuser.service.ClienteService;
+import com.fatec.sigvsmsuser.service.IClienteServico;
 
 import jakarta.validation.Valid;
 
@@ -22,9 +25,9 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/v1/clientes")
 public class ClienteController {
-
-	final ClienteService clienteService;
-
+	Logger logger = LogManager.getLogger(this.getClass());
+	final IClienteServico clienteService;
+	
 	public ClienteController(ClienteService usuarioService) {
 		this.clienteService = usuarioService;
 	}
@@ -44,11 +47,9 @@ public class ClienteController {
 		}
 
 	}
-
 	@GetMapping("/all")
 	public List<Cliente> getAll() {
-		// logger.info(">>>>>> apicontroller consulta todos iniciado...");
+		logger.info(">>>>>> apicontroller consulta todos iniciado...");
 		return clienteService.consultaTodos();
 	}
-
 }
