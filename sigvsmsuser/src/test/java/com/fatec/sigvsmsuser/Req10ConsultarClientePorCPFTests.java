@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import com.fatec.sigvsmsuser.model.Cliente;
 import com.fatec.sigvsmsuser.service.ClienteRepository;
 @DataJpaTest
-class Req11ConsultarClientePorCPFTests {
+class Req10ConsultarClientePorCPFTests {
 	private Cliente cliente;
 	@Autowired
 	private ClienteRepository clienteRepository;
