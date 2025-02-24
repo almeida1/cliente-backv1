@@ -9,5 +9,6 @@ import com.fatec.sigvsmsuser.model.Cliente;
 public interface ClienteRepository extends JpaRepository <Cliente, Long> {
 	Optional<Cliente> findByCpf(String cpf);
 	void deleteByCpf(String cpf);
+	
 
 }
