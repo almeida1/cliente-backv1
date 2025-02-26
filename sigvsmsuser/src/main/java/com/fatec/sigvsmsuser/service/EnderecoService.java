@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fatec.sigvsmsuser.model.Endereco;
 
 @Service
-public class EnderecoService {
+public class EnderecoService implements IEnderecoService {
 
     private static final String API_URL = "https://viacep.com.br/ws/{cep}/json/";
     private static final Logger logger = LogManager.getLogger(EnderecoService.class);

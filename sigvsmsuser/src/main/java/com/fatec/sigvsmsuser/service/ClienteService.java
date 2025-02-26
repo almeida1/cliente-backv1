@@ -19,7 +19,7 @@ public class ClienteService implements IClienteServico {
 	final ClienteRepository clienteRepository;
 	final ClienteProducer clienteProducer;
 	@Autowired
-	private EnderecoService enderecoService;
+	private IEnderecoService enderecoService;
 
 	public ClienteService(ClienteRepository clienteRepository, ClienteProducer clienteProducer) {
 		this.clienteRepository = clienteRepository;
