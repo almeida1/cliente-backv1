@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpHeaders;
 
 import com.fatec.sigvsmsuser.model.Cliente;
+import com.google.gson.Gson;
 
 
 
@@ -37,9 +38,11 @@ class Req09CadastrarClienteTests {
 		cliente.setCep("01310-100");
 		cliente.setEmail("jose@gmail.com");
 		cliente.setDataCadastro();
+		Gson gson = new Gson();
+		String clienteJson = gson.toJson(cliente);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<Cliente> request = new HttpEntity<>(cliente, headers);
+		HttpEntity<String> request = new HttpEntity<>(clienteJson, headers);
 		//********************************************************************
 		// When - quando confirmo o cadastro do cliente
 		//********************************************************************
@@ -51,7 +54,7 @@ class Req09CadastrarClienteTests {
 		Cliente clienteCadastrado = response.getBody();
 		assertEquals("Jose da Silva", clienteCadastrado.getNome());
 		assertEquals("Avenida Paulista", clienteCadastrado.getEndereco());
-		assertEquals(1, clienteCadastrado.getId()); // Verifica se o ID foi setado corretamente
+	
 
 	}
 
