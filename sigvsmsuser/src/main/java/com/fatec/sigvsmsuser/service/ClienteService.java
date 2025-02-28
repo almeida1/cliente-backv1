@@ -18,14 +18,15 @@ public class ClienteService implements IClienteServico {
 	Logger logger = LogManager.getLogger(this.getClass());
 	final ClienteRepository clienteRepository;
 	final ClienteProducer clienteProducer;
-	@Autowired
+	
 	private IEnderecoService enderecoService;
 
-	public ClienteService(ClienteRepository clienteRepository, ClienteProducer clienteProducer) {
-		this.clienteRepository = clienteRepository;
-		this.clienteProducer = clienteProducer;
-	}
-
+	// Injeção de dependências pelo construtor
+    public ClienteService(ClienteRepository clienteRepository, ClienteProducer clienteProducer, IEnderecoService enderecoService) {
+        this.clienteRepository = clienteRepository;
+        this.clienteProducer = clienteProducer;
+        this.enderecoService = enderecoService;
+    }
 	@Transactional
 	public Optional<Cliente> cadastrar(Cliente cliente) {
 		try {

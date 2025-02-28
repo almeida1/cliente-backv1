@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fatec.sigvsmsuser.model.Cliente;
 import com.fatec.sigvsmsuser.model.ClienteRecordDTO;
-import com.fatec.sigvsmsuser.service.ClienteService;
 import com.fatec.sigvsmsuser.service.IClienteServico;
 
 import jakarta.validation.Valid;
@@ -28,8 +27,8 @@ public class ClienteController {
 	Logger logger = LogManager.getLogger(this.getClass());
 	final IClienteServico clienteService;
 	
-	public ClienteController(ClienteService usuarioService) {
-		this.clienteService = usuarioService;
+	public ClienteController(IClienteServico servico) {
+		this.clienteService = servico;
 	}
 
 	@PostMapping
