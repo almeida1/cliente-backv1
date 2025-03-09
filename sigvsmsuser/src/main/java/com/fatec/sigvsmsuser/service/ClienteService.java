@@ -17,19 +17,20 @@ public class ClienteService implements IClienteServico {
 	Logger logger = LogManager.getLogger(this.getClass());
 	final ClienteRepository clienteRepository;
 	final ClienteProducer clienteProducer;
-	
 	private IEnderecoService enderecoService;
 
 	// Injeção de dependências pelo construtor
-    public ClienteService(ClienteRepository clienteRepository, ClienteProducer clienteProducer, IEnderecoService enderecoService) {
-        this.clienteRepository = clienteRepository;
-        this.clienteProducer = clienteProducer;
-        this.enderecoService = enderecoService;
-    }
+	public ClienteService(ClienteRepository clienteRepository, ClienteProducer clienteProducer,
+			IEnderecoService enderecoService) {
+		this.clienteRepository = clienteRepository;
+		this.clienteProducer = clienteProducer;
+		this.enderecoService = enderecoService;
+	}
+
 	@Transactional
 	public ClienteResponse cadastrar(Cliente cliente) {
 		try {
-			// Verifica se o cliente já existe com base no CPF 
+			// Verifica se o cliente já existe com base no CPF
 			if (clienteRepository.findByCpf(cliente.getCpf()).isPresent()) {
 				logger.info(">>>>>> clienteservico - cliente já cadastrado");
 				return new ClienteResponse(false, "Cliente já cadastrado.", null);
@@ -37,20 +38,20 @@ public class ClienteService implements IClienteServico {
 
 			Optional<String> endereco = enderecoService.obtemLogradouroPorCep(cliente.getCep());
 			if (endereco.isEmpty()) {
-				logger.warn(">>>>>> Endereço não encontrado para o CEP");
-				 return new ClienteResponse(false, "Endereço não encontrado.", null);
+				logger.info(">>>>>> Endereço não encontrado para o CEP");
+				return new ClienteResponse(false, "Endereço não encontrado.", null);
 			} else {
 				cliente.setDataCadastro();
 				cliente.setEndereco(endereco.get());
 				Cliente novoCliente = clienteRepository.save(cliente);
-		        logger.info(">>>>>> clienteservico - cliente salvo com sucesso no repositório");
+				logger.info(">>>>>> clienteservico - cliente salvo com sucesso no repositório");
 				clienteProducer.publishMessageEmail(cliente);
-				 logger.info(">>>>>> clienteservico - mensagem enviada");
-				 return new ClienteResponse(true, "Cliente cadastrado com sucesso.", novoCliente);
+				logger.info(">>>>>> clienteservico - mensagem enviada");
+				return new ClienteResponse(true, "Cliente cadastrado com sucesso.", novoCliente);
 			}
 		} catch (Exception e) {
 			logger.info(">>>>>> clienteservico - erro nao esperado metodo cadastrar ");
-			 return new ClienteResponse(false, "Erro interno ao cadastrar cliente.", null);
+			return new ClienteResponse(false, "Erro não esperado ao cadastrar cliente.", null);
 		}
 	}
 
@@ -59,30 +60,29 @@ public class ClienteService implements IClienteServico {
 		return clienteRepository.findAll();
 	}
 
-	
 	@Override
 	public ClienteResponse consultarPorCpf(String cpf) {
-		Optional<Cliente> c =clienteRepository.findByCpf(cpf);
+		Optional<Cliente> c = clienteRepository.findByCpf(cpf);
 		if (c.isPresent()) {
-			return new ClienteResponse(true,null,c.get());
+			return new ClienteResponse(true, null, c.get());
 		} else {
-			return new ClienteResponse(true,"Cliente não cadastrado",c.get());
+			return new ClienteResponse(true, "Cliente não cadastrado", c.get());
 		}
 	}
 
 	@Override
 	public ClienteResponse atualizar(String cpf, Cliente cliente) {
-		return new ClienteResponse(false,"Nao implementado",null);
+		return new ClienteResponse(false, "Nao implementado", null);
 	}
 
 	@Override
 	public ClienteResponse excluir(String cpf) {
 		Optional<Cliente> c = clienteRepository.findByCpf(cpf);
 		if (c.isEmpty()) {
-			return new ClienteResponse(false,"Cliente não cadastrado",null);
+			return new ClienteResponse(false, "Cliente não cadastrado", null);
 		} else {
 			clienteRepository.deleteByCpf(cpf);
-			return new ClienteResponse(true,"Cliente excluido",null);
+			return new ClienteResponse(true, "Cliente excluido", null);
 		}
 	}
 
