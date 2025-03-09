@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fatec.sigvsmsuser.model.Cliente;
@@ -28,19 +27,18 @@ public class ClienteService implements IClienteServico {
         this.enderecoService = enderecoService;
     }
 	@Transactional
-	public Optional<Cliente> cadastrar(Cliente cliente) {
+	public ClienteResponse cadastrar(Cliente cliente) {
 		try {
-			// Verifica se o cliente já existe com base no CPF ou outro identificador único
-			Optional<Cliente> clienteExistente = clienteRepository.findByCpf(cliente.getCpf());
-			if (clienteExistente.isPresent()) {
-				logger.info(">>>>>> clienteservico - cliente já cadastrado com CPF: " + cliente.getCpf());
-				return Optional.empty(); // Retorna vazio indicando que o cliente já existe
+			// Verifica se o cliente já existe com base no CPF 
+			if (clienteRepository.findByCpf(cliente.getCpf()).isPresent()) {
+				logger.info(">>>>>> clienteservico - cliente já cadastrado");
+				return new ClienteResponse(false, "Cliente já cadastrado.", null);
 			}
 
 			Optional<String> endereco = enderecoService.obtemLogradouroPorCep(cliente.getCep());
 			if (endereco.isEmpty()) {
-				logger.warn(">>>>>> Endereço não encontrado para o CEP: " + cliente.getCep());
-				return Optional.empty(); //retorna vazio indicando que o cep nao foi localizado
+				logger.warn(">>>>>> Endereço não encontrado para o CEP");
+				 return new ClienteResponse(false, "Endereço não encontrado.", null);
 			} else {
 				cliente.setDataCadastro();
 				cliente.setEndereco(endereco.get());
@@ -48,11 +46,11 @@ public class ClienteService implements IClienteServico {
 		        logger.info(">>>>>> clienteservico - cliente salvo com sucesso no repositório");
 				clienteProducer.publishMessageEmail(cliente);
 				 logger.info(">>>>>> clienteservico - mensagem enviada");
-				return Optional.of(novoCliente);
+				 return new ClienteResponse(true, "Cliente cadastrado com sucesso.", novoCliente);
 			}
 		} catch (Exception e) {
-			logger.info(">>>>>> clienteservico - erro metodo cadastrar comando save ");
-			return Optional.empty();
+			logger.info(">>>>>> clienteservico - erro nao esperado metodo cadastrar ");
+			 return new ClienteResponse(false, "Erro interno ao cadastrar cliente.", null);
 		}
 	}
 
@@ -63,30 +61,33 @@ public class ClienteService implements IClienteServico {
 
 	
 	@Override
-	public Optional<Cliente> consultarPorCpf(String cpf) {
-		return clienteRepository.findByCpf(cpf);
+	public ClienteResponse consultarPorCpf(String cpf) {
+		Optional<Cliente> c =clienteRepository.findByCpf(cpf);
+		if (c.isPresent()) {
+			return new ClienteResponse(true,null,c.get());
+		} else {
+			return new ClienteResponse(true,"Cliente não cadastrado",c.get());
+		}
 	}
 
 	@Override
-	public Optional<Cliente> atualizar(Long id, Cliente cliente) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+	public ClienteResponse atualizar(String cpf, Cliente cliente) {
+		return new ClienteResponse(false,"Nao implementado",null);
 	}
 
 	@Override
-	public Optional<Cliente> excluir(String cpf) {
+	public ClienteResponse excluir(String cpf) {
 		Optional<Cliente> c = clienteRepository.findByCpf(cpf);
 		if (c.isEmpty()) {
-			return Optional.empty();
+			return new ClienteResponse(false,"Cliente não cadastrado",c.get());
 		} else {
 			clienteRepository.deleteByCpf(cpf);
-			return c;
+			return new ClienteResponse(true,"Cliente excluido",null);
 		}
 	}
 
 	@Override
 	public Double estoqueImobilizado() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

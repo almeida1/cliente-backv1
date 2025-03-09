@@ -18,9 +18,7 @@ class Req12AtualizarClienteTests {
 	private ClienteRepository clienteRepository;
 	@BeforeEach
 	public void setUp() {
-	    // Initialize test data before each test method
-		//cliente = new ClienteRecordDTO("80983098000","Jose da Silva","01310-100", "jose@gmail.com");
-		cliente = new Cliente();
+	 	cliente = new Cliente();
 		cliente.setCpf("80983098000");
 		cliente.setNome("Jose da Silva");
 		cliente.setCep("01310-100");
@@ -30,8 +28,9 @@ class Req12AtualizarClienteTests {
 		clienteRepository.save(cliente);
 	}
 	@Test
-	void ct03_quando_cliente_modificado_retorna_informacoes_atualizadas() {
+	void ct01_quando_cliente_modificado_retorna_informacoes_atualizadas() {
 		cliente.setNome("Carlos Xavier");
+		clienteRepository.save(cliente);
 		Optional<Cliente> clienteAtualizado = clienteRepository.findByCpf("80983098000");
 		assertEquals ("Carlos Xavier",clienteAtualizado.get().getNome());
 	}

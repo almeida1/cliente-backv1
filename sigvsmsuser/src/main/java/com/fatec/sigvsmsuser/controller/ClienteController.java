@@ -1,7 +1,6 @@
 package com.fatec.sigvsmsuser.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fatec.sigvsmsuser.model.Cliente;
 import com.fatec.sigvsmsuser.model.ClienteRecordDTO;
+import com.fatec.sigvsmsuser.service.ClienteResponse;
 import com.fatec.sigvsmsuser.service.IClienteServico;
 
 import jakarta.validation.Valid;
@@ -38,11 +38,11 @@ public class ClienteController {
 		novoCliente.setNome(cliente.nome());
 		novoCliente.setCep(cliente.cep());
 		novoCliente.setEmail(cliente.email());
-		Optional<Cliente> c = clienteService.cadastrar(novoCliente);
-		if (c.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados invalidos");
+		ClienteResponse c = clienteService.cadastrar(novoCliente);
+		if (!c.isSucesso()) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(c.getMensagem());
 		} else {
-			return ResponseEntity.status(HttpStatus.CREATED).body(c.get());
+			return ResponseEntity.status(HttpStatus.CREATED).body(c.getCliente());
 		}
 
 	}

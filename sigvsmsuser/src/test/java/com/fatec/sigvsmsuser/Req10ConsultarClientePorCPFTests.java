@@ -18,8 +18,7 @@ class Req10ConsultarClientePorCPFTests {
 	private ClienteRepository clienteRepository;
 	@BeforeEach
 	public void setUp() {
-	    // Initialize test data before each test method
-		//cliente = new ClienteRecordDTO("80983098000","Jose da Silva","01310-100", "jose@gmail.com");
+	   
 		cliente = new Cliente();
 		cliente.setCpf("80983098000");
 		cliente.setNome("Jose da Silva");

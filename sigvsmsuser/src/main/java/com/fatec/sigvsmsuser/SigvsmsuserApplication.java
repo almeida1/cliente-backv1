@@ -12,7 +12,7 @@ public class SigvsmsuserApplication {
 		SpringApplication.run(SigvsmsuserApplication.class, args);
 	}
 	@Bean
-    public RestTemplate restTemplate() {
+    RestTemplate restTemplate() {
         return new RestTemplate();
     }
 }
