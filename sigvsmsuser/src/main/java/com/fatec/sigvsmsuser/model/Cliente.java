@@ -42,7 +42,7 @@ public class Cliente {
 	}
 
 	public void setCpf(String cpf) {
-		if (validarCPF(cpf) == true) {
+		if (validarCPF(cpf)) {
 			this.cpf = cpf;
 		} else {
 			throw new IllegalArgumentException("CPF invalido");
@@ -65,7 +65,7 @@ public class Cliente {
 			throw new IllegalArgumentException("O nome não deve estar em branco");
 		else
 			this.nome = nome;
-		this.nome = nome;
+		
 	}
 
 	public String getCep() {

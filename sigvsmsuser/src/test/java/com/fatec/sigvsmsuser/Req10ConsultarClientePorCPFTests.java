@@ -30,13 +30,13 @@ class Req10ConsultarClientePorCPFTests {
 	}
 	@Test
 	void ct01_quando_cliente_cadastrado_retorna_detalhes() {
-		Optional<Cliente> cliente = clienteRepository.findByCpf("80983098000");
-		assertTrue (cliente.isPresent());
+		Optional<Cliente> c = clienteRepository.findByCpf("80983098000");
+		assertTrue (c.isPresent());
 	}
 	
 	@Test
 	void ct02_quando_cliente_nao_cadastrado_retorna_null() {
-		Cliente cliente = clienteRepository.findByCpf("80983098001").orElse(null);
-		assertNull (cliente);
+		Cliente c = clienteRepository.findByCpf("80983098001").orElse(null);
+		assertNull (c);
 	}
 }

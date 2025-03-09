@@ -79,7 +79,7 @@ public class ClienteService implements IClienteServico {
 	public ClienteResponse excluir(String cpf) {
 		Optional<Cliente> c = clienteRepository.findByCpf(cpf);
 		if (c.isEmpty()) {
-			return new ClienteResponse(false,"Cliente não cadastrado",c.get());
+			return new ClienteResponse(false,"Cliente não cadastrado",null);
 		} else {
 			clienteRepository.deleteByCpf(cpf);
 			return new ClienteResponse(true,"Cliente excluido",null);

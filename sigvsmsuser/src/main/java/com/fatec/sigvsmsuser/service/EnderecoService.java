@@ -26,7 +26,7 @@ public class EnderecoService implements IEnderecoService {
     }
 
     public Optional<String> obtemLogradouroPorCep(String cep) {
-        logger.info(">>>>>> obtemLogradouroPorCep chamado para o CEP: " + cep);
+        logger.info(">>>>>> obtemLogradouroPorCep chamado para o CEP: ");
         try {
             ResponseEntity<Endereco> response = restTemplate.exchange(
                 API_URL,
@@ -41,14 +41,14 @@ public class EnderecoService implements IEnderecoService {
 
             Endereco endereco = response.getBody();
             if (endereco != null && endereco.getLogradouro() != null) {
-                logger.info(">>>>>> Logradouro encontrado: " + endereco.getLogradouro());
+                logger.info(">>>>>> Logradouro encontrado");
                 return Optional.of(endereco.getLogradouro());
             } else {
-                logger.warn(">>>>>> Logradouro não encontrado para o CEP: " + cep);
+                logger.warn(">>>>>> Logradouro não encontrado para o CEP ");
                 return Optional.empty();
             }
         } catch (HttpClientErrorException e) {
-            logger.warn(">>>>>> Erro retornado pela API ao buscar CEP: " + cep, e);
+            logger.warn(">>>>>> Erro retornado pela API ao buscar CEP ");
             return Optional.empty();
         }
     }

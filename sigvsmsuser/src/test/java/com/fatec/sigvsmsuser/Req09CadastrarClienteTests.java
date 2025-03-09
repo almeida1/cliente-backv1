@@ -3,8 +3,6 @@ package com.fatec.sigvsmsuser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -20,8 +18,8 @@ class Req09CadastrarClienteTests {
 	public String dataAtual() {
 		LocalDate dataAtual = LocalDate.now();
 		DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String data = dataAtual.format(pattern);
-		return data;
+		return dataAtual.format(pattern);
+		
 	}
 
 	@Test
