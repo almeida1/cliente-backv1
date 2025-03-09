@@ -2,6 +2,7 @@ package com.fatec.sigvsmsuser.model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -149,4 +150,24 @@ public class Cliente {
 			return (false);
 		}
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cep, cpf, email, nome);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(cep, other.cep) && Objects.equals(cpf, other.cpf)
+				&& Objects.equals(email, other.email)
+				&& Objects.equals(nome, other.nome);
+	}
+	
 }
