@@ -20,14 +20,14 @@ public class ClienteProducer {
 	private String routingKey;
 	
 	public void publishMessageEmail(Cliente cliente) {
-		logger.info(">>>>> clienteProducer publish -> publish msg de novo usuario cadastrado");
+		logger.info(">>>>> clienteProducer publishMessageEmail iniciado...");
 		var emailDto = new EmailDto();
 		emailDto.setUsuarioId(cliente.getId());
 		emailDto.setEmailTo(cliente.getEmail());
 		emailDto.setSubject("Confirmação de cadastro");
 		emailDto.setText(cliente.getNome() + ", \n\n Agradecemos seu cadastro. \n\n SIGVS Administrador");
 		rabbitTemplate.convertAndSend("", routingKey,emailDto);
-		
+		logger.info(">>>>> clienteProducer publish -> publish msg de novo usuario cadastrado");
 	}
 
 }
