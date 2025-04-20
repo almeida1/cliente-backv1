@@ -21,11 +21,7 @@ public class ClienteProducer {
 	
 	public void publishMessageEmail(Cliente cliente) {
 		logger.info(">>>>> clienteProducer publishMessageEmail iniciado...");
-		var emailDto = new EmailDto();
-		emailDto.setUsuarioId(cliente.getId());
-		emailDto.setEmailTo(cliente.getEmail());
-		emailDto.setSubject("Confirmação de cadastro");
-		emailDto.setText(cliente.getNome() + ", \n\n Agradecemos seu cadastro. \n\n SIGVS Administrador");
+		var emailDto = new EmailDto(cliente.getId(),cliente.getEmail(),"Confirmação de cadastro",cliente.getNome() + ", \n\n Agradecemos seu cadastro. \n\n SIGVS Administrador");
 		rabbitTemplate.convertAndSend("", routingKey,emailDto);
 		logger.info(">>>>> clienteProducer publish -> publish msg de novo usuario cadastrado");
 	}
