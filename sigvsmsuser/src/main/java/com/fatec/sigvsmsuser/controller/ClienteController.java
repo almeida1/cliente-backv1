@@ -33,6 +33,7 @@ public class ClienteController {
 
 	@PostMapping
 	public ResponseEntity<Object> saveCliente(@RequestBody @Valid ClienteRecordDTO cliente) {
+		logger.info(">>>>>> apicontroller cadastro de cliente iniciado...");
 		Cliente novoCliente = new Cliente();
 		novoCliente.setCpf(cliente.cpf());
 		novoCliente.setNome(cliente.nome());
