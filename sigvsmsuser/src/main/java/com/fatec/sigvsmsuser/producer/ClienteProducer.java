@@ -21,9 +21,14 @@ public class ClienteProducer {
 	
 	public void publishMessageEmail(Cliente cliente) {
 		logger.info(">>>>> clienteProducer publishMessageEmail iniciado...");
+		try {
 		var emailDto = new EmailDto(cliente.getId(),cliente.getEmail(),"Confirmação de cadastro",cliente.getNome() + ", \n\n Agradecemos seu cadastro. \n\n SIGVS Administrador");
 		rabbitTemplate.convertAndSend("", routingKey,emailDto);
 		logger.info(">>>>> clienteProducer publish -> publish msg de novo usuario cadastrado");
+		}catch(Exception e) {
+			logger.info(">>>>> cliente producer erro no envio do email => " + e.getMessage());
+			throw new IllegalArgumentException("Erro na conexao com o broker");
+		}
 	}
 
 }
