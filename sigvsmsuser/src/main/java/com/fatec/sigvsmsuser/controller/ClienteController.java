@@ -30,7 +30,9 @@ public class ClienteController {
 	public ClienteController(IClienteServico servico) {
 		this.clienteService = servico;
 	}
-
+   /*
+    * obj - manupula requisicoes post http
+    */
 	@PostMapping
 	public ResponseEntity<Object> saveCliente(@RequestBody @Valid ClienteRecordDTO cliente) {
 		logger.info(">>>>>> apicontroller cadastro de cliente iniciado...");
