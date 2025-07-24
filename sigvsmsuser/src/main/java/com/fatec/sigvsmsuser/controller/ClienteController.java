@@ -57,7 +57,7 @@ public class ClienteController {
 		return clienteService.consultaTodos();
 	}
 	/*
-	 * Consulta o cpf eh enviado no arquivo json clientedto com os outros atributos em branco
+	 * O cpf eh enviado no arquivo json clientedto com os outros atributos em branco
 	 */
 	@GetMapping("/cpf")
 	public ResponseEntity<Object> getCliente(@RequestBody ClienteRecordDTO cliente) {
@@ -65,7 +65,7 @@ public class ClienteController {
 		try {
 			c = clienteService.consultarPorCpf(cliente.cpf()); //obtem o cpf
 			if (c.isSucesso()) {
-				return ResponseEntity.status(HttpStatus.CREATED).body(c.getCliente());
+				return ResponseEntity.status(HttpStatus.OK).body(c.getCliente());
 			} else {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(c.getMensagem());
 			}
