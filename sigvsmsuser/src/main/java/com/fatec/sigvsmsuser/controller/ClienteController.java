@@ -26,13 +26,14 @@ import jakarta.validation.Valid;
 public class ClienteController {
 	Logger logger = LogManager.getLogger(this.getClass());
 	final IClienteServico clienteService;
-	
+
 	public ClienteController(IClienteServico servico) {
 		this.clienteService = servico;
 	}
-   /*
-    * obj - manupula requisicoes post http
-    */
+
+	/*
+	 * obj - manupula requisicoes post http
+	 */
 	@PostMapping
 	public ResponseEntity<Object> saveCliente(@RequestBody @Valid ClienteRecordDTO cliente) {
 		logger.info(">>>>>> apicontroller cadastro de cliente iniciado...");
@@ -49,9 +50,28 @@ public class ClienteController {
 		}
 
 	}
+
 	@GetMapping("/all")
 	public List<Cliente> getAll() {
 		logger.info(">>>>>> apicontroller consulta todos iniciado...");
 		return clienteService.consultaTodos();
+	}
+	/*
+	 * Consulta o cpf eh enviado no arquivo json clientedto com os outros atributos em branco
+	 */
+	@GetMapping("/cpf")
+	public ResponseEntity<Object> getCliente(@RequestBody ClienteRecordDTO cliente) {
+		ClienteResponse c = new ClienteResponse(false, "CPF Invalido", null);
+		try {
+			c = clienteService.consultarPorCpf(cliente.cpf()); //obtem o cpf
+			if (c.isSucesso()) {
+				return ResponseEntity.status(HttpStatus.CREATED).body(c.getCliente());
+			} else {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(c.getMensagem());
+			}
+		} catch (Exception e) {
+			logger.info(">>>>>>apicontroller getCliente por cpf => " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(c.getMensagem());
+		}
 	}
 }

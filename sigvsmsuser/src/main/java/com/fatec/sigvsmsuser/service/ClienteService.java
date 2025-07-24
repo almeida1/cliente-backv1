@@ -50,7 +50,7 @@ public class ClienteService implements IClienteServico {
 				return new ClienteResponse(true, "Cliente cadastrado com sucesso.", novoCliente);
 			}
 		} catch (Exception e) {
-			logger.info(">>>>>> clienteservico - erro nao esperado metodo cadastrar " + e.getMessage());
+			logger.info(">>>>>> clienteservico - erro nao esperado metodo cadastrar => " + e.getMessage());
 			return new ClienteResponse(false, "Erro não esperado ao cadastrar cliente.", null);
 		}
 	}
@@ -66,6 +66,7 @@ public class ClienteService implements IClienteServico {
 		if (c.isPresent()) {
 			return new ClienteResponse(true, null, c.get());
 		} else {
+			logger.info(">>>>>> clienteservico cliente nao encontrado => " + cpf);
 			return new ClienteResponse(true, "Cliente não cadastrado", c.get());
 		}
 	}
