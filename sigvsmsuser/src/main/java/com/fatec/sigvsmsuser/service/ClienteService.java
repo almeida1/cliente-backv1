@@ -67,7 +67,7 @@ public class ClienteService implements IClienteServico {
 			return new ClienteResponse(true, null, c.get());
 		} else {
 			logger.info(">>>>>> clienteservico cliente nao encontrado => " + cpf);
-			return new ClienteResponse(true, "Cliente não cadastrado", c.get());
+			return new ClienteResponse(false, "Cliente não cadastrado", null);
 		}
 	}
 

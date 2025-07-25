@@ -61,19 +61,21 @@ public class ClienteController {
 	 * O cpf eh enviado no arquivo json clientedto com os outros atributos em branco
 	 * para nao trafegar com o cpf na url
 	 */
-	@GetMapping("/cpf")
+	@PostMapping("/cpf")
 	public ResponseEntity<Object> getCliente(@RequestBody ClienteRecordDTO cliente) {
 		ClienteResponse c = new ClienteResponse(false, "CPF Invalido", null);
 		try {
 			c = clienteService.consultarPorCpf(cliente.cpf()); //obtem o cpf
+			logger.info(">>>>>> apicontroller getCliente consulta servico iniciado" );
 			if (c.isSucesso()) {
 				return ResponseEntity.status(HttpStatus.OK).body(c.getCliente());
 			} else {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(c.getMensagem());
 			}
 		} catch (Exception e) {
-			logger.info(">>>>>>apicontroller getCliente por cpf => " + e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(c.getMensagem());
+			logger.info(">>>>>>apicontroller getCliente erro nao esperado => " + e.getMessage());
+			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao processar a requisição.");
+			
 		}
 	}
 }
