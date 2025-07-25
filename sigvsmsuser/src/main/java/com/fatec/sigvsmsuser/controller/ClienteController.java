@@ -32,7 +32,8 @@ public class ClienteController {
 	}
 
 	/*
-	 * obj - manupula requisicoes post http
+	 * As informacoes do cliente sao recebidas em um arquivo DTO para o uso do objeto POJO
+	 * na assinatura do metodo.  
 	 */
 	@PostMapping
 	public ResponseEntity<Object> saveCliente(@RequestBody @Valid ClienteRecordDTO cliente) {
@@ -58,6 +59,7 @@ public class ClienteController {
 	}
 	/*
 	 * O cpf eh enviado no arquivo json clientedto com os outros atributos em branco
+	 * para nao trafegar com o cpf na url
 	 */
 	@GetMapping("/cpf")
 	public ResponseEntity<Object> getCliente(@RequestBody ClienteRecordDTO cliente) {
